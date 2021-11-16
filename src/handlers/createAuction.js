@@ -25,7 +25,7 @@ async function createAuction(event, context) {
       Item: auction,
     }).promise();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new createError.InternalServerError(error);
   }
 
