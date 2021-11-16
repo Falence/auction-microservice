@@ -7,17 +7,18 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   memorySize: 256
   stage: ${opt:stage, 'dev'}
+  region: eu-west-1
   
 functions:
-  hello:
-    handler: src/handlers/hello.handler
+  createAuction:
+    handler: src/handlers/createAuction.handler
     events:
       - http:
-          method: GET
-          path: /hello
+          method: POST
+          path: /auction
 
 custom:
   bundle:
