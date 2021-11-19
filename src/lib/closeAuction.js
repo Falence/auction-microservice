@@ -13,7 +13,7 @@ export async function closeAuction(id) {
     ExpressionAttributeNames: {
       '#status': 'status',
     },
-  });
+  }).promise();
 
   return result;
 }
