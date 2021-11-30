@@ -4,7 +4,7 @@ const schema = {
     body: {
       type: 'string',
       minLength: 1,
-      pattern: '\=$'
+      pattern: '\=$' // ends with an = sign
     },
   },
   required: ['body']
