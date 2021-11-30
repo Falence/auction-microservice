@@ -10,8 +10,14 @@ export async function uploadAuctionPicture(event) {
   const auction = await getAuctionById(id);
   const base64 = event.body.replace(/^data:image\/\w+;base64,/, '');
   const buffer = Buffer.from(base64, 'base64');
+  const { email } = event.requestContext.authorizer;
 
   let updatedAuction;
+
+  // Validate auction ownership
+  if (email !== auction.seller) {
+    throw new createError.Forbidden('You are not the seller of this auction!');
+  }
 
   try {
     const pictureUrl = await uploadPictureToS3(auction.id + '.jpg', buffer);
